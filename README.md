@@ -11,6 +11,7 @@ allows changing your lights from inside emacs.
 It will evolve as a tool as more functionality is added to `lighthouse`.
 
 <br>
+
 ## Dependencies
 
 Please follow the installation guide for
