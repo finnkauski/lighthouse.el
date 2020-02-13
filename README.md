@@ -3,7 +3,7 @@
 # Lighthouse.el
 
 This is package wraps the functionality of the
-[https://github.com/finnkauski/lighthouse](lighthouse) command line tool and
+[lighthouse](https://github.com/finnkauski/lighthouse) command line tool and 
 allows changing your lights from inside emacs. 
 
 <br>
@@ -15,7 +15,7 @@ It will evolve as a tool as more functionality is added to `lighthouse`.
 ## Dependencies
 
 Please follow the installation guide for
-[https://github.com/finnkauski/lighthouse](lighthouse) and make sure it is in
+[lighthouse](https://github.com/finnkauski/lighthouse) and make sure it is in 
 your path. 
 
 ## NOTE:
