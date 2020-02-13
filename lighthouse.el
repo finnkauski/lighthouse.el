@@ -1,7 +1,5 @@
 ;;; lighthouse.el --- A wrapper for `lighthouse.rs`
 
-;; Copyright (C) 2011 Free Software Foundation, Inc.
-
 ;; Author: A. Eidukas <iwiivi@gmail.com>
 ;; Version: 0.1
 ;; Keywords: hue, home-automation, lights, philips
@@ -9,21 +7,19 @@
 
 
 ;;; Commentary:
-
+;;
 ;; This package is a Emacs wrapper for the Lighthouse command
 ;; line tool functionality. For more info on Lighthouse itself
 ;; see https://github.com/finnkauski/lighthouse
+;;
+;; NOTE: This is developed and tested on doom-emacs config
+;; which is an amazing config by Hendrik Lissner
+;; (see here: https://github.com/hlissner/doom-emacs)
 
 ;;; Code:
 
 (defun lighthouse-call (command)
-  "Call lighthouse with a given set of commands.
-
-Passes whatever string is passed in to 'lh' under
-the hood.
-
-The COMMAND is a string command collected from the user interactively.
-"
+  "Call lighthouse with a given a COMMAND."
   (interactive "sCommand: ")
   (start-process-shell-command
    "lighthouse-call"
@@ -32,7 +28,7 @@ The COMMAND is a string command collected from the user interactively.
   )
 
 (defun lighthouse-on ()
-  "Turn on all lights"
+  "Turn on all lights."
   (interactive)
   (start-process-shell-command
    "lighthouse-on"
@@ -42,7 +38,7 @@ The COMMAND is a string command collected from the user interactively.
   )
 
 (defun lighthouse-off ()
-  "Turn off all lights"
+  "Turn off all lights."
   (interactive)
   (start-process-shell-command
    "lighthouse-off"
@@ -52,7 +48,7 @@ The COMMAND is a string command collected from the user interactively.
   )
 
 (defun lighthouse-state (state)
-  "Lighthouse send state string"
+  "Lighthouse send STATE string."
   (interactive "sState: ")
   (start-process-shell-command
    "lighthouse-state"
@@ -61,7 +57,7 @@ The COMMAND is a string command collected from the user interactively.
   )
 
 (defun lighthouse-bri (bri)
-  "Lighthouse send state string"
+  "Lighthouse send BRI val as brightness."
   (interactive "nBrightness (0 - 254): ")
   (start-process-shell-command
    "lighthouse-bri"
@@ -70,7 +66,7 @@ The COMMAND is a string command collected from the user interactively.
   )
 
 (defun lighthouse-info ()
-  "Print out the state of the system in a popup buffer"
+  "Print out the state of the system in a popup buffer."
   (interactive)
   (call-process
    "lh"
@@ -92,3 +88,6 @@ The COMMAND is a string command collected from the user interactively.
       "h b" #'lighthouse-bri
       )
 (map! :leader "l" lighthouse-keymap)
+
+(provide 'lighthouse)
+;;; lighthouse.el ends here
