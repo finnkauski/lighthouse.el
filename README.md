@@ -5,9 +5,12 @@
 This is package wraps the functionality of the
 [https://github.com/finnkauski/lighthouse](lighthouse) command line tool and
 allows changing your lights from inside emacs. 
+
 <br>
+
 It will evolve as a tool as more functionality is added to `lighthouse`.
 
+<br>
 ## Dependencies
 
 Please follow the installation guide for
