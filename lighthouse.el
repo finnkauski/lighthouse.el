@@ -185,6 +185,9 @@
 
 (defvar lighthouse-alist
   '((org-mode . "ff00ff")
+    (python-mode . "0000ff")
+    (emacs-lisp-mode . "f47883")
+    (rust-mode . "ff0000")
     ))
 
 (defun lighthouse-from-buffer ()
