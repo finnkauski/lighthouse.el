@@ -21,3 +21,27 @@ It will evolve as a tool as more functionality is added to `lighthouse`.
 Please follow the installation guide for
 [lighthouse](https://github.com/finnkauski/lighthouse) and make sure it is in
 your path.
+
+## Usage
+
+Enable `lighthouse mode` using
+
+```
+M-x lighthouse-mode
+```
+
+Then try `SPC l` to see the bindings.
+
+## Buffer based tracking mode
+
+Enable `lighthouse-tracking-mode` using
+
+```
+M-x lighthouse-tracking-mode
+```
+
+Currently supported modes:
+
+- python
+- org
+- elisp
