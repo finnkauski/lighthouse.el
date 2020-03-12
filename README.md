@@ -18,7 +18,7 @@ It will evolve as a tool as more functionality is added to `lighthouse`.
 
 ## Demo
 
-[Imgur](https://i.imgur.com/bHp9gxa.gifv)
+<img align="left" src="meta/lighthouse-demo.gif">
 
 ## Dependencies
 
