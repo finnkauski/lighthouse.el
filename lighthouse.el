@@ -17,7 +17,7 @@
 ;; (see here: https://github.com/hlissner/doom-emacs)
 
 ;;; Code:
-
+;; Basic commands
 (defun lighthouse-call (command)
   "Call lighthouse with a given a COMMAND."
   (interactive "sCommand: ")
@@ -126,11 +126,11 @@
    "lighthouse-loop"
    nil
    "lh loop"
-  )
+   )
   )
 
 (defun lighthouse-id-loop (ids)
-  "Put lights into a colorloop by IDS"
+  "Put lights into a colorloop by IDS."
   (interactive "sIDs: ")
   (start-process-shell-command
    "lighthouse-id-loop"
@@ -150,31 +150,56 @@
    )
   (display-buffer-pop-up-window (get-buffer "*LIGHTHOUSE-INFO*") '((window-height . 0.3)))  )
 
+;; Minor mode
+(define-minor-mode lighthouse-mode
+  "Global mode allowing access to the lighthouse suite of commands"
+  :lighter " lighthouse"
+  :global t
+  ;; Keymaps
+  (defvar lighthouse-all-keymap (make-sparse-keymap))
+  (map! :map lighthouse-all-keymap
+        "s" #'lighthouse-state
+        "o" #'lighthouse-on
+        "x" #'lighthouse-off
+        "b" #'lighthouse-bri
+        "c" #'lighthouse-color
+        "l" #'lighthouse-loop
+        )
 
-(defvar lighthouse-all-keymap (make-sparse-keymap))
-(map! :map lighthouse-all-keymap
-      "s" #'lighthouse-state
-      "o" #'lighthouse-on
-      "x" #'lighthouse-off
-      "b" #'lighthouse-bri
-      "c" #'lighthouse-color
-      "l" #'lighthouse-loop
-      )
+  (defvar lighthouse-id-keymap (make-sparse-keymap))
+  (map! :map lighthouse-id-keymap
+        "r" #'lighthouse-call
+        "s" #'lighthouse-id-state
+        "o" #'lighthouse-id-on
+        "x" #'lighthouse-id-off
+        "i" #'lighthouse-info
+        "b" #'lighthouse-id-bri
+        "c" #'lighthouse-id-color
+        "l" #'lighthouse-id-loop
+        "a" lighthouse-all-keymap
+        )
 
-(defvar lighthouse-id-keymap (make-sparse-keymap))
-(map! :map lighthouse-id-keymap
-      "r" #'lighthouse-call
-      "s" #'lighthouse-id-state
-      "o" #'lighthouse-id-on
-      "x" #'lighthouse-id-off
-      "i" #'lighthouse-info
-      "b" #'lighthouse-id-bri
-      "c" #'lighthouse-id-color
-      "l" #'lighthouse-id-loop
-      "a" lighthouse-all-keymap
-      )
+  (map! :leader "l" lighthouse-id-keymap)
+  )
 
-(map! :leader "l" lighthouse-id-keymap)
+
+(defvar lighthouse-alist
+  '((org-mode . "ff00ff")
+    ))
+
+(defun lighthouse-from-buffer ()
+  "Lighthouse function to set the light color based on the current mode of the buffer."
+  (when-let (color (cdr (assq major-mode lighthouse-alist)))
+    (lighthouse-color color)))
+
+(define-minor-mode lighthouse-tracking-mode
+  "Lighthouse mode that follows what buffer you are in and changes the color."
+  :lighter " lighthouse-tracking-mode"
+  :global t
+  (if lighthouse-tracking-mode
+      (add-hook 'doom-switch-buffer-hook #'lighthouse-from-buffer)
+    (remove-hook 'doom-switch-buffer-hook #'lighthouse-from-buffer)))
 
 (provide 'lighthouse)
+
 ;;; lighthouse.el ends here
