@@ -18,7 +18,7 @@ It will evolve as a tool as more functionality is added to `lighthouse`.
 
 ## Demo
 
-<img align="left" src="meta/lighthouse-demo.gif" height="500px">
+<img align="left" src="meta/lighthouse-demo.gif" height="250px">
 
 ## Dependencies
 
