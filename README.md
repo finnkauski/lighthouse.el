@@ -16,6 +16,10 @@ It will evolve as a tool as more functionality is added to `lighthouse`.
 > [doom-emacs](https://github.com/hlissner/doom-emacs) so tweaking and PRs are
 > welcome to make it more generic.
 
+## Demo
+
+<img src="meta/lighthouse-demo.gif">
+
 ## Dependencies
 
 Please follow the installation guide for
