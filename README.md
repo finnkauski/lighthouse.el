@@ -12,14 +12,12 @@ It will evolve as a tool as more functionality is added to `lighthouse`.
 
 <br>
 
+> This package is developed for
+> [doom-emacs](https://github.com/hlissner/doom-emacs) so tweaking and PRs are
+> welcome to make it more generic.
+
 ## Dependencies
 
 Please follow the installation guide for
 [lighthouse](https://github.com/finnkauski/lighthouse) and make sure it is in
 your path.
-
-## NOTE:
-
-This package is developed for
-[doom-emacs](https://github.com/hlissner/doom-emacs) so tweaking and PRs are
-welcome to make it more generic.
