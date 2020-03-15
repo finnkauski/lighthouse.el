@@ -46,13 +46,14 @@ Then try `SPC l` to see the bindings.
 
 ## lightspeed-mode
 
-Track how many commands (actions) your are doing in the span of 10 seconds and
+Track how many commands (actions) your are doing in the span of 15 seconds and
 alter the lights based on that. The more actions you perform the brighter the
 lights are.
 
 The brightness is bound between 0 - 254 in the `lighthouse` binary, hence the
 calculation are done as `min((actions_per_10_s * 1.5), 254)` and the transitions
-are done in 2.5 seconds.
+are set to take in 15 seconds (Note: I am not certain this setting is correctly
+respected by the `Hue` as it seems to take less time).
 
 Enable `lighthouse-speed-mode` in your `init.el` or using:
 

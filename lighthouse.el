@@ -189,7 +189,7 @@
 
 (defun lighthouse-action-reset ()
   "Get the number of actions taken and reset them."
-  (lighthouse-state (format "{\\\"bri\\\":%d\\\,\\\"transition\\\":250}" (min (* lighthouse-actions 1.5) 254)))
+  (lighthouse-state (format "{\\\"bri\\\":%d\\\,\\\"transition\\\":150}" (min (* lighthouse-actions 1.5) 254)))
   (setq lighthouse-actions 0)
   )
 
@@ -208,7 +208,7 @@
   (if lightspeed-mode
       (progn
         (add-hook 'pre-command-hook #'lighthouse-increment-count)
-        (setq lighthouse-action-timer (run-with-timer 10 10 'lighthouse-action-reset))
+        (setq lighthouse-action-timer (run-with-timer 5 15 'lighthouse-action-reset))
         )
 
     (progn
