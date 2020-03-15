@@ -75,12 +75,12 @@ M-x lighthouse-tracking-mode
 
 ### Currently supported modes and their colors:
 
-- ff00ff - python
-- ff0000 - rustic (Rust)
-- ff00ff - org-mode
-- f47883 - emacs-lisp-mode
-- ffd300 - web-mode (HTML)
-- ff0000 - css-mode
+- `ff00ff` - python
+- `ff0000` - rustic (Rust)
+- `ff00ff` - org-mode
+- `f47883` - emacs-lisp-mode
+- `ffd300` - web-mode (HTML)
+- `ff0000` - css-mode
 
 In order to use your own mode to color mapping, alter the `lighthouse-alist`
 variable as this association list is what maps minor-modes to colors.
