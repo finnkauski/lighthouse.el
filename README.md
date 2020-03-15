@@ -51,7 +51,7 @@ alter the lights based on that. The more actions you perform the brighter the
 lights are.
 
 The brightness is bound between 0 - 254 in the `lighthouse` binary, hence the
-calculation are done as `min((actions_per_10_s * 1.5), 254)` and the transitions
+calculation are done as `min((actions_per_15_s * 1.5), 254)` and the transitions
 are set to take in 15 seconds (Note: I am not certain this setting is correctly
 respected by the `Hue` as it seems to take less time).
 
