@@ -21,7 +21,7 @@ minor modes:
 
 ## Demo
 
-<img align="center" src="meta/lighthouse-demo.gif" height="300px">
+<p align="center"><img src="meta/lighthouse-demo.gif" height="400px"></p>
 
 ## Dependencies
 
