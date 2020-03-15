@@ -17,7 +17,8 @@
 ;; (see here: https://github.com/hlissner/doom-emacs)
 
 ;;; Code:
-;; Basic commands
+
+;; Basic commands wrapping the lighthouse binary
 (defun lighthouse-call (command)
   "Call lighthouse with a given a COMMAND."
   (interactive "sCommand: ")
@@ -150,7 +151,7 @@
    )
   (display-buffer-pop-up-window (get-buffer "*LIGHTHOUSE-INFO*") '((window-height . 0.3)))  )
 
-;; Minor mode
+;; Minor mode for controlling lights
 (define-minor-mode lighthouse-mode
   "Global mode allowing access to the lighthouse suite of commands"
   :lighter " lighthouse"
@@ -182,12 +183,47 @@
   (map! :leader "l" lighthouse-id-keymap)
   )
 
+;; Speed tracking mode
+(defvar lighthouse-action-timer nil)
+(defvar lighthouse-actions 0)
 
+(defun lighthouse-action-reset ()
+  "Get the number of actions taken and reset them."
+  (lighthouse-state (format "{\\\"bri\\\":%d\\\,\\\"transition\\\":250}" (min (* lighthouse-actions 1.5) 254)))
+  (setq lighthouse-actions 0)
+  )
+
+(defun lighthouse-increment-count ()
+  "Increment action count action."
+  (let ((command real-last-command))
+    (when command
+      (setq lighthouse-actions (+ lighthouse-actions 1))
+      )
+    ))
+
+(define-minor-mode lightspeed-mode
+  "Lighthouse mode that tracks the speed of your commands."
+  :lighter " lighthouse-speed-mode"
+  :global t
+  (if lightspeed-mode
+      (progn
+        (add-hook 'pre-command-hook #'lighthouse-increment-count)
+        (setq lighthouse-action-timer (run-with-timer 10 10 'lighthouse-action-reset))
+        )
+
+    (progn
+      (remove-hook 'pre-command-hook #'lighthouse-increment-count)
+      (setq lighthouse-action-timer nil)
+      )))
+
+;; Buffer tracking mode
 (defvar lighthouse-alist
   '((org-mode . "ff00ff")
     (python-mode . "0000ff")
     (emacs-lisp-mode . "f47883")
-    (rust-mode . "ff0000")
+    (rustic-mode . "ff0000")
+    (web-mode . "ffd300")
+    (css-mode . "ff0000")
     ))
 
 (defun lighthouse-from-buffer ()
@@ -200,8 +236,13 @@
   :lighter " lighthouse-tracking-mode"
   :global t
   (if lighthouse-tracking-mode
-      (add-hook 'doom-switch-buffer-hook #'lighthouse-from-buffer)
-    (remove-hook 'doom-switch-buffer-hook #'lighthouse-from-buffer)))
+      (progn
+        (add-hook 'doom-switch-buffer-hook #'lighthouse-from-buffer)
+        (add-hook 'doom-switch-window-hook #'lighthouse-from-buffer)
+        )
+    (progn
+      (remove-hook 'doom-switch-buffer-hook #'lighthouse-from-buffer))
+    (remove-hook 'doom-switch-window-hook #'lighthouse-from-buffer)))
 
 (provide 'lighthouse)
 
